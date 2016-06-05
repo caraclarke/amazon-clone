@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 
 // user schema fields
@@ -48,3 +48,6 @@ UserSchema.pre('save', function(next) {
 UserSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 }
+
+// export schema
+module.exports = mongoose.model('User', UserSchema);
