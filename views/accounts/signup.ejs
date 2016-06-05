@@ -3,6 +3,15 @@
 <div class="row">
   <div class="col-lg-6 col-md-offset-3">
 
+    <% if (errors.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismmiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= errors %>
+      </div>
+    <% } %>
+
     <form method="post">
 
       <h1> Signup </h1>
