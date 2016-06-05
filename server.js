@@ -33,6 +33,16 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 // parse url encoded
 app.use(bodyParser.urlencoded({ extended: true }));
+// cookieParser
+app.use(cookieParser());
+// session
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'cara2@3cA'
+}));
+// flash
+app.use(flash());
 // ejs // using ejs-mate engine
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
