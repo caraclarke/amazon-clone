@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 // extension of ejs to create flexible web pages
 var engine = require('ejs-mate');
-var session = require('session');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
 
