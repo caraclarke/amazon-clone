@@ -22,4 +22,24 @@ var UserSchema = new Schema({
 
 // hash password before saving to database
 
+UserSchema.pre('save', function(next) {
+  // this refers to user schema
+  var user = this;
+
+  if (!user.isModified('password')) return next();
+  bcrypt.getSalt(10, function(err, salt) {
+    if (err) return next(err);
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
+      // if theres a hashing error
+      if (err) return next(err);
+
+      // if theres no error set password to hash
+      user.password = hash;
+      // when its done return callback with no parameter
+      next();
+    });
+  });
+
+}); // end UserSchema pre
+
 // compare password in DB to user input password
