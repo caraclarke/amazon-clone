@@ -43,3 +43,8 @@ UserSchema.pre('save', function(next) {
 }); // end UserSchema pre
 
 // compare password in DB to user input password
+
+// create custom method
+UserSchema.methods.comparePassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+}
