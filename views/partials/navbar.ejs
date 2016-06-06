@@ -8,6 +8,25 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right">
+      <% if (!user) { %>
+
+      <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>
+        <ul class="dropdown-menu">
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+      </li>
+
+     <% } else { %>
+
+      <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= user.profile.name %></a>
+        <ul class="dropdown-menu">
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </li>
+      <% } %>
+
     </ul>
 
   </div>

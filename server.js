@@ -50,6 +50,11 @@ app.use(flash());
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+  // routes have user object by default
+  res.locals.user = req.user;
+  next();
+})
 
 // ejs // using ejs-mate engine
 app.engine('ejs', engine);
