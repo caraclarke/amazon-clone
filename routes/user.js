@@ -67,4 +67,29 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+router.get('/edit-profile', function(req, res, next) {
+  res.render('accounts/edit-profile', { message: req.flash('success') });
+});
+
+router.post('/edit-profile', function(req, res, next) {
+
+  // find user using currently logged in user id
+  User.findOne({ _id: req.user._id }, function(err, user) {
+    if (err) return next(err);
+
+    // replace users existing data with data newly input
+    if (req.body.name) user.profile.name = req.body.name;
+    if (req.body.address) user.address = req.body.address;
+
+    // save users data and flash message
+    user.save(function(err) {
+      if (err) return next(err);
+
+      req.flash('success', 'Successfully edited profile');
+      return res.redirect('/profile');
+    });
+  });
+
+});
+
 module.exports = router;

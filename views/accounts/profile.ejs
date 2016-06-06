@@ -10,8 +10,17 @@
       <br />
       <p>Name: <%= user.profile.name %></p>
       <p>Email: <%= user.email %></p>
+
+      <% if (user.address === "" || typeof user.address === 'undefined')  { %>
+        <p>Address: <span class="noAddress">You have no address</span></p>
+
+      <% } else { %>
+
       <p>Address: <%= user.address %></p>
 
+      <% } %>
+
+      <a href="/edit-profile" class="btn btn-primary btn-md">Edit Profile</a>
     </div>
   </div>
 

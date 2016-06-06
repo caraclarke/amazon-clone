@@ -3,3 +3,9 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+/* Change color of text if profile has no address */
+.noAddress {
+  color: #c0392b;
+  font-weight: bold;
+}
