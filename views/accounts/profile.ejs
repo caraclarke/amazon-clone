@@ -1,5 +1,18 @@
 <% layout('layout') -%>
 
 <div class="container">
-  hello <%= user.profile.name %>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+
+      <img class="img-center img-responsive" src="<%= user.profile.picture %>" alt="profile picture" />
+
+      <br />
+      <p>Name: <%= user.profile.name %></p>
+      <p>Email: <%= user.email %></p>
+      <p>Address: <%= user.address %></p>
+
+    </div>
+  </div>
+
 </div>
