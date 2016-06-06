@@ -47,7 +47,14 @@ router.post('/signup', function(req, res, next) {
       user.save(function(err, user) {
         if (err) return next(err);
 
-        return res.redirect('/');
+        // add session to server and cookie to browser using logIn
+        // user object is result of new user creation
+        req.logIn(user, function(err) {
+          if (err) return next(err);
+
+          res.redirect('/profile');
+        });
+
       });
     }
   });
