@@ -9,14 +9,15 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
 
+var secret = require('./config/secret');
 // require user
 var User = require('./models/user.js');
 
 var app = express();
-var port = 5000;
+var port = secret.port;
 
 // connect mongoose to DB
-mongoose.connect('mongodb://root:a@ds023613.mlab.com:23613/ecomm', function(err) {
+mongoose.connect(secret.database, function(err) {
   if (err){
     console.log(err);
   } else {
@@ -39,7 +40,7 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: 'cara2@3cA'
+  secret: secret.secretKey
 }));
 // flash
 app.use(flash());
