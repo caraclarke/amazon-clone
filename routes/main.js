@@ -30,6 +30,35 @@ stream.on('error', function(err) {
   console.log(err);
 });
 
+// search routes
+router.post('/search', function(req, res, next) {
+  res.redirect('/search?q=' + req.body.q);
+});
+
+router.get('/search', function(req, res, next) {
+  if (req.query.q) {
+    // search value we receive from post
+    // search elasticsearch replica set
+    Product.search({
+      query_string: { query: req.query.q }
+    }, function(err, results) {
+      // if err give error
+      if (err) return next(err);
+
+      // otherwise return results
+      var data = results.hits.hits.map(function(hit) {
+        return hit;
+      });
+
+      // render data
+      res.render('main/search-result', {
+        query: req.query.q,
+        data: data
+      });
+    });
+  }
+});
+
 // home route
 router.get('/', function(req, res) {
   res.render('main/home');
