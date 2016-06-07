@@ -8,6 +8,11 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right">
+
+      <% for (var i=0; i < categories.length; i++) { %>
+        <li><a><%= categories[i].name %></a></li>
+      <% } %>
+
       <% if (!user) { %>
 
       <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>

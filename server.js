@@ -13,7 +13,8 @@ var passport = require('passport');
 
 var secret = require('./config/secret');
 // require user
-var User = require('./models/user.js');
+var User = require('./models/user');
+var Category = require('./models/category');
 
 var app = express();
 var port = secret.port;
@@ -54,7 +55,19 @@ app.use(function(req, res, next) {
   // routes have user object by default
   res.locals.user = req.user;
   next();
-})
+});
+
+app.use(function(req, res, next) {
+  // find all the categories --> {}
+  Category.find({}, function(err, categories) {
+    if (err) return next(err);
+
+    // store list of categories in local variable named categories
+    res.locals.categories = categories;
+    // callback
+    next();
+  });
+});
 
 // ejs // using ejs-mate engine
 app.engine('ejs', engine);
