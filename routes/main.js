@@ -1,6 +1,8 @@
 var router = require('express').Router();
+var User = require('../models/user');
 var Product = require('../models/product');
 var Cart = require('../models/cart');
+var async = require('async');
 require('dotenv').config();
 
 var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -197,10 +199,45 @@ router.post('/payment', function(req, res, next) {
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       console.log('card has been declined', err);
+    } else {
+      console.log('payment successful');
     }
-  });
+  }).then(function(charge) {
+    async.waterfall([
+      function(callback) {
+        Cart.findOne({ owner: req.user._id }, function(err, cart) {
+          callback(err, cart);
+        });
+      },
 
-  res.redirect('/profile');
+      function(cart, callback) {
+        User.findOne({ _id: req.user._id }, function(err, user) {
+          if (user) {
+            for (var i=0; i < cart.items.length; i++) {
+              user.history.push({
+                item: cart.items[i].item,
+                paid: cart.items[i].price
+              });
+            }
+
+            user.save(function(err, user) {
+              if (err) return next(err);
+
+              callback(err, user);
+            });
+          }
+        });
+      },
+
+      function(user, callback) {
+        Cart.update({ owner: user._id }, { $set: { items: [], total: 0 }}, function(err, updated) {
+          if (updated) {
+            res.redirect('/profile');
+          }
+        });
+      }
+    ]);
+  });
 
 });
 
