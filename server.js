@@ -15,6 +15,7 @@ var secret = require('./config/secret');
 // require user
 var User = require('./models/user');
 var Category = require('./models/category');
+var cartLength = require('./middleware/middleware');
 
 var app = express();
 var port = secret.port;
@@ -56,6 +57,8 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
+
+app.use(cartLength)
 
 app.use(function(req, res, next) {
   // find all the categories --> {}
