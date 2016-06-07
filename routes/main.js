@@ -1,6 +1,32 @@
 var router = require('express').Router();
 var Product = require('../models/product');
 
+function paginate(req, res, next) {
+
+  var perPage = 9;
+  var page = req.params.page;
+
+  Product
+    .find()
+    // skip and limit paginate products
+    .skip(perPage * page)
+    .limit(perPage)
+    .populate('category')
+    .exec(function(err, products) {
+      if (err) return next(err);
+
+      Product.count().exec(function(err, count) {
+        if (err) return next(err);
+
+        res.render('main/product-main', {
+          products: products,
+          pages: count / perPage
+        });
+      });
+    });
+
+}
+
 // map between product database and elasticsearch
 Product.createMapping(function(err, mapping) {
   if (err) {
@@ -60,8 +86,18 @@ router.get('/search', function(req, res, next) {
 });
 
 // home route
-router.get('/', function(req, res) {
-  res.render('main/home');
+router.get('/', function(req, res, next) {
+  if (req.user) {
+    paginate(req, res, next);
+  } else {
+    // if user isn't logged in
+    res.render('main/home');
+  }
+});
+
+// switch between paginated pages on homepage
+router.get('/page/:page', function(req, res, next) {
+  paginate(req,res,next);
 });
 
 // about page route
