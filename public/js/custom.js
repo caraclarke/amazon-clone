@@ -1,9 +1,7 @@
-require('dotenv').config();
-
 $(function() {
 
   // stripe
-  Stripe.setPublishableKey(process.env.PublishableKey);
+  Stripe.setPublishableKey('pk_test_gMDrhWn68SQ2dsUxIgq6CEIH');
 
   // homepage search
   $('#search').keyup(function() {

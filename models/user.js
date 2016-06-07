@@ -16,8 +16,8 @@ var UserSchema = new Schema({
   history: [{
     // whenever a user purchases something
     // want to save the products they purchased to this history
-    date: Date,
-    paid: { type: Number, default: 0 }
+    paid: { type: Number, default: 0 },
+    item: { type: Schema.Types.ObjectId, ref: 'Product' }
   }]
 })
 
