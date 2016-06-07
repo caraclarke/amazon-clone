@@ -28,6 +28,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.13.0",
     "faker": "^3.1.0",
+    "mongoosastic": "^4.0.2",
     "mongoose": "^4.4.19",
     "morgan": "^1.7.0",
     "nodemon": "^1.9.2",

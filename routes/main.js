@@ -1,6 +1,35 @@
 var router = require('express').Router();
 var Product = require('../models/product');
 
+// map between product database and elasticsearch
+Product.createMapping(function(err, mapping) {
+  if (err) {
+    console.log('error creating mapping', err);
+  } else {
+    console.log('mapping created', mapping);
+  }
+});
+
+// synchronize product in elasticsearch replica set
+var stream = Product.synchronize();
+var count = 0;
+
+// run three different sets of methods
+// count documents
+stream.on('data', function() {
+  count++;
+});
+
+// once close synchronize it will count all the documents
+stream.on('close', function() {
+  console.log('Indexed ' + count + ' documents');
+});
+
+// show error if error
+stream.on('error', function(err) {
+  console.log(err);
+});
+
 // home route
 router.get('/', function(req, res) {
   res.render('main/home');
