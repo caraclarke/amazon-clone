@@ -194,7 +194,13 @@ router.post('/payment', function(req, res, next) {
       currency: 'usd',
       customer: customer.id
     });
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      console.log('card has been declined', err);
+    }
   });
+
+  res.redirect('/profile');
 
 });
 
