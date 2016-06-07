@@ -56,6 +56,27 @@ stream.on('error', function(err) {
   console.log(err);
 });
 
+// cart routes
+router.post('/product/:product_id', function(req, res, next) {
+  Cart.findOne({ owner: req.user._id }, function(err, cart) {
+    cart.items.push({
+      item: req.body.product_id,
+      price: parseFloat(req.body.priceValue),
+      quantity: parseInt(req.body.quantity)
+    });
+
+    // total price
+    cart.total = (cart.total + parseFloat(req.body.priceValue)).toFixed(2);
+
+    cart.save(function(err) {
+      if (err) return next(err);
+
+      return res.redirect('/cart');
+    });
+  });
+
+});
+
 // search routes
 router.post('/search', function(req, res, next) {
   res.redirect('/search?q=' + req.body.q);
