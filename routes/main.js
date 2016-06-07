@@ -66,7 +66,7 @@ router.get('/cart', function(req, res, next) {
       if (err) return next(err);
 
       res.render('main/cart', {
-        cart: foundCart
+        foundCart: foundCart
       });
     });
 });

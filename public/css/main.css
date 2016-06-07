@@ -9,3 +9,8 @@ body {
   color: #c0392b;
   font-weight: bold;
 }
+
+/* cart image sizing */
+.product-image {
+  width: 100%;
+}
