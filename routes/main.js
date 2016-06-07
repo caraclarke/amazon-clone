@@ -1,4 +1,5 @@
 var router = require('express').Router();
+var Product = require('../models/product');
 
 // home route
 router.get('/', function(req, res) {

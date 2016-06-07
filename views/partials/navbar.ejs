@@ -10,7 +10,7 @@
     <ul class="nav navbar-nav navbar-right">
 
       <% for (var i=0; i < categories.length; i++) { %>
-        <li><a><%= categories[i].name %></a></li>
+        <li><a href="/products/<%= categories[i]._id %>"><%= categories[i].name %></a></li>
       <% } %>
 
       <% if (!user) { %>
