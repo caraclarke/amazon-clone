@@ -1,6 +1,9 @@
 var router = require('express').Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
+require('dotenv').config();
+
+var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 function paginate(req, res, next) {
 
@@ -178,5 +181,21 @@ router.get('/product/:id', function(req, res, next) {
   });
 });
 
+// stripe
+router.post('/payment', function(req, res, next) {
+  var stripeToken = req.body.stripeToken;
+  var currentCharges = Math.round(req.body.stripeMoney * 100);
+
+  stripe.customers.create({
+    source: stripeToken
+  }).then(function(customer) {
+    return stripe.charges.create({
+      amount: currentCharges,
+      currency: 'usd',
+      customer: customer.id
+    });
+  });
+
+});
 
 module.exports = router;
