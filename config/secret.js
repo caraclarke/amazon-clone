@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   database: process.env.database,
-  port: 5000,
+  port: process.env.myPort,
   secretKey: process.env.secretKey,
 
   facebook: {
