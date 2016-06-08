@@ -155,11 +155,6 @@ router.get('/page/:page', function(req, res, next) {
   paginate(req,res,next);
 });
 
-// about page route
-router.get('/about', function(req, res) {
-  res.render('main/about');
-});
-
 // view all products
 router.get('/products/:id', function(req, res, next) {
   Product
