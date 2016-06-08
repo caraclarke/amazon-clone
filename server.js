@@ -87,6 +87,6 @@ app.use(adminRoutes);
 app.use('/api', apiRoutes);
 
 app.listen(port, function(err) {
-  if (err) throw err;
+  if (err) console.log(err);
   console.log('Server is running on port', port);
 });
