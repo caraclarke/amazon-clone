@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var secret = require('./config/secret');
+var secret = require('./secret');
 var User = require('../models/user.js');
 
 // serialize and deserialize
@@ -58,7 +58,7 @@ passport.use(new FacebookStrategy(secret.facebook, function(token, refreshToken,
       newUser.profile.name = profile.displayName;
       newUser.profile.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
 
-      newUser.save(fucntion(err) {
+      newUser.save(function(err) {
         if (err) return done(err);
 
         return done(null, newUser);
