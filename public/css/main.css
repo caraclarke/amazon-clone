@@ -58,6 +58,18 @@ body {
   background-color: #777;
 }
 
+.jumbotron {
+  padding-bottom: 100px;
+  color: white;
+}
+
+.jumbotron {
+  background-image: url('../img/search-back.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
 .carousel-inner > .item {
   background-image: url('../img/splash-image.png');
   background-size: cover;
