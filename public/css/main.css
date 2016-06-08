@@ -98,6 +98,15 @@ body {
   letter-spacing: -1px;
 }
 
+/* stripe modal label fixes */
+
+label[for=expMonth] {
+  display: block;
+}
+
+.cc-img {
+  margin-top: -15px;
+}
 
 /* RESPONSIVE CSS */
 
