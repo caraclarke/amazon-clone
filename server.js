@@ -11,6 +11,7 @@ var flash = require('express-flash');
 var MongoStore = require('connect-mongo/es5')(session);
 var passport = require('passport');
 
+require('dotenv').config();
 var secret = require('./config/secret');
 // require user
 var User = require('./models/user');
@@ -86,7 +87,4 @@ app.use(userRoutes);
 app.use(adminRoutes);
 app.use('/api', apiRoutes);
 
-app.listen(port, function(err) {
-  if (err) console.log(err);
-  console.log('Server is running on port', port);
-});
+app..listen(process.env.myPort || 5000)
