@@ -10,6 +10,9 @@ var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
 var MongoStore = require('connect-mongo/es5')(session);
 var passport = require('passport');
+require('dotenv').config();
+var secret = require('./config/secret');
+
 var bonsai_url = process.env.BONSAI_URL;
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
@@ -31,8 +34,6 @@ function (error) {
 }
 );
 
-require('dotenv').config();
-var secret = require('./config/secret');
 // require user
 var User = require('./models/user');
 var Category = require('./models/category');

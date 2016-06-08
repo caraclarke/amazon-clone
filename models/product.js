@@ -1,3 +1,4 @@
+require('dotenv').config();
 var mongoose = require('mongoose');
 var mongoosastic = require('mongoosastic');
 var Schema = mongoose.Schema;
@@ -10,7 +11,7 @@ var ProductSchema = new Schema({
 });
 
 ProductSchema.plugin(mongoosastic, {
-  hosts: ['localhost:9200']
+  hosts: [process.env.BONSAI_URL]
 });
 
 module.exports = mongoose.model('Product', ProductSchema);
