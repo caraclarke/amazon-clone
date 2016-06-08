@@ -9,6 +9,6 @@ module.exports = {
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
     profieField: ['emails', 'displayName'],
-    callbackURL: 'http://localhost:5000/auth/facebook/callback'
+    callbackURL: 'https://caraeb-econn.herokuapp.com/auth/facebook/callback'
   }
 }
