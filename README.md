@@ -1,4 +1,4 @@
-# Raising Records
+# Raising Records - eCommerce App
 ---
 
 This eCommerce website is an online 'record' store where users can view different genres of albums, search keywords and purchase music. Users have to create an account to purchase items, but from their account they are able to see their purchase history.
@@ -14,6 +14,16 @@ The data was made using [faker.js](https://github.com/marak/Faker.js/).
 - Search specific terms using search in navbar
 - Once logged in, instant search available from homepage
 - Checkout using Stripe
+
+####Technologies
+
+- [EJS templating](http://www.embeddedjs.com/)
+- [Node.js](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
+- [Express](http://expressjs.com/)
+- [Passport](http://passportjs.org/)
+- [Stripe](https://stripe.com/)
+- [Elasticsearch](https://www.elastic.co/)
 
 ####Installation
 
