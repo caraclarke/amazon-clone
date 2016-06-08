@@ -3,7 +3,7 @@
 
 This eCommerce website is an online 'record' store where users can view different genres of albums, search keywords and purchase music. Users have to create an account to purchase items, but from their account they are able to see their purchase history.
 
-The project uses JavaScript on the front and back end. It uses EJS templating for Node.js for the views and Node.js with a MongoDB database on the back end, as well as express and passport middleware. It also uses other libraries such as Stripe and Elasticsearch for product checkout and search functionality.
+The project uses JavaScript on the front and back end. It uses EJS templating for Node.js for the views and Node.js with a MongoDB database on the back end, as well as express middleware. It also uses other libraries such as Stripe and Elasticsearch for product checkout and search functionality.
 
 The data was made using [faker.js](https://github.com/marak/Faker.js/).
 
@@ -21,7 +21,6 @@ The data was made using [faker.js](https://github.com/marak/Faker.js/).
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
 - [Express](http://expressjs.com/)
-- [Passport](http://passportjs.org/)
 - [Stripe](https://stripe.com/)
 - [Elasticsearch](https://www.elastic.co/)
 
