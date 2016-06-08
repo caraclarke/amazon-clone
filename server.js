@@ -87,4 +87,4 @@ app.use(userRoutes);
 app.use(adminRoutes);
 app.use('/api', apiRoutes);
 
-app..listen(process.env.myPort || 5000)
+app.listen(process.env.PORT || 5000)
