@@ -43,12 +43,13 @@
 
     <% } %>
       </ul>
-      <form class="navbar-form navbar-right">
-          <div class="form-group">
-            <input type="text" name="q" class="form-control" placeholder="Search..." />
-          </div>
+      <form class="navbar-form navbar-right" method="post" action="/search">
+        <div class="form-group">
+          <input type="text" name="q" class="form-control" placeholder="Search..." />
+
           <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+        </div>
+    </form>
 
     </div> <!--/.nav-collapse -->
   </div>
