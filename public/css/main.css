@@ -33,9 +33,11 @@ body {
   width: auto;
 }
 
-/*.container {
-  margin-top: 80px;
-}*/
+/* logged in jumbotron fix */
+
+.jumbotron {
+  margin-top: -30px;
+}
 
 /* carousel styling */
 
